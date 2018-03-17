@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Ststista automation tests" verbose="2" parallel="tests" thread-count="2">
+	<!-- <test name="Smoke test using firefox">
+	<parameter name="browser" value="firefox"></parameter>
+		<classes>
+			<class name="com.app.tests.SmokeTest"></class>	
+		</classes>		
+	</test> -->
+	
+	<test name="Smoke test using chrome">
+	<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="com.app.tests.SmokeTest"></class>	
+		</classes>		
+	</test>
+</suite>

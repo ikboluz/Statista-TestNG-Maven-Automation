@@ -10,6 +10,7 @@ import java.util.function.Function;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,8 +21,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.app.pages.StatistaPage;
+
+import net.bytebuddy.asm.Advice.Enter;
+
 public class BrowserUtils {
 	
+	
+
 	private static WebDriver driver = Driver.getDriver();
 
 	public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
@@ -95,18 +102,113 @@ public class BrowserUtils {
 		FileUtils.copyFile(outputFile, new File(System.getProperty("user.dir")
 				+ "//src//test//java//com//companyname//projectname//screenshots//" + fileName + ".jpg"));
 	}
-	
+
+	/*
+	 * this method is for 
+	 * "to find all links text".
+	 */
 	public static List<String> getElementsText(By locator) {
-		
-		List<WebElement> elems=driver.findElements(locator);
-		List<String> elemTexts= new ArrayList<>();
+
+		List<WebElement> elems = driver.findElements(locator);
+		List<String> elemTexts = new ArrayList<>();
 		for (WebElement link : elems) {
-			if(!link.getText().isEmpty()) {
+			if (!link.getText().isEmpty()) {
 				elemTexts.add(link.getText());
 			}
 		}
-		
+
 		return elemTexts;
+	}
+
+	/*
+	 * this method is for Title is displayed.
+	 */
+	public static boolean isAt() {
+		return driver.getTitle()
+				.equals("• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+	}
+
+	/*
+	 * this method is for Home page search button.
+	 * "Enter your element and data to search "
+	 *
+	 */
+	public static void searchStatista(WebElement element, String search) {
+		element.sendKeys(search);
+		element.sendKeys(Keys.ENTER);
+	}
+
+	/*
+	 * this method is for 
+	 * "to find the Names under the Topics" 
+	 * which is located on left side of page.
+	 */
+	public static String getTopicNameLists(List<WebElement> elements, String name) {
+		String topicName="";
+		List<WebElement> elems = elements;
+		for (WebElement webElement : elems) {
+			if (webElement.getText().contains(name)) {
+				topicName=webElement.getText().substring(0, webElement.getText().length() - 3).trim();
+			}
+		}
+		return topicName;
+	}
+	
+	/*
+	 * this method is for 
+	 * "Topic Lists" you choose topics name
+	 * and it's clicking on the check boxes.
+	 */
+	public static void getTopicListsAndClick(List<WebElement> elements, String name){
+		List<WebElement> elems = elements;
+		for (int i = 0; i < elems.size(); i++) {
+			if(elems.get(i).getText().equals(name)) {
+				elems.get(i).click();
+			}
+		}
+	}
+	
+	
+	/*
+	 * This method is for
+	 * "Verifying CheckBox is CHECKED".
+	 */
+	public static boolean verifingCheckBoxIsChecked(List<WebElement> elements, String name) {
+		//label[@class='entitiy__label']//span[contains(text(),'Topics')]/../../input
+		List<WebElement> elems = elements;
+		StatistaPage statistaPage = new StatistaPage();
+		for (int i = 0; i < elems.size(); i++) {
+			if(statistaPage.topicNameLists.get(i).getText().contains(name)) {
+				if(elems.get(i).getAttribute("checked")==null) {
+					return false;
+				}else {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	
+	/*
+	 * This method is for
+	 * "Verifying CheckBox is UNCHECKED".
+	 */
+	public static boolean verifingCheckBoxIsUnchecked(List<WebElement> elements, String name) {
+		
+		//label[@class='entitiy__label']//span[contains(text(),'Topics')]/../../input
+		List<WebElement> elems = elements;
+		StatistaPage statistaPage = new StatistaPage();
+		for (int i = 0; i < elems.size(); i++) {
+			if(statistaPage.topicNameLists.get(i).getText().contains(name)) {
+				if(elems.get(i).getAttribute("checked")==null) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		}
+		return false;
 	}
 
 }
