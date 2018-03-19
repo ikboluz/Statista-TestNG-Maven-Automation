@@ -6,9 +6,17 @@ import static org.testng.Assert.assertTrue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
+import org.testng.annotations.Test;
+
 import com.app.pages.StatistaPage;
 import com.app.utilities.BrowserUtils;
+import com.app.utilities.ConfigurationReader;
 import com.app.utilities.TestBase;
+
+import net.bytebuddy.dynamic.loading.PackageDefinitionStrategy.ManifestReading.SealBaseLocator;
 
 public class Statista extends TestBase{
 	
@@ -137,7 +145,7 @@ public class Statista extends TestBase{
 	
 	
 	
-	@Test(priority=19)
+	//@Test(priority=19)
 	public void testST019() {
 		
 		String dataSearch="cat and dog";
@@ -221,5 +229,19 @@ public class Statista extends TestBase{
 		
 		
 	}
+	
+	@Test(priority=4)
+	public void testST004() {
+
+		String dataSearch="Dog";
+		assertTrue(BrowserUtils.isAt());
+		assertTrue(driver.getCurrentUrl().equals("https://www.statista.com/"));
+		BrowserUtils.searchStatistaButton(statistaPage.searchField, dataSearch);
+		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch);
+		assertTrue(BrowserUtils.firstThree(statistaPage.searchResults, dataSearch));
+	// 	assertTrue(BrowserUtils.isContains(dataSearch));	
+	}
+	
+	
 
 }

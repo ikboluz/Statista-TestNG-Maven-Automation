@@ -122,7 +122,7 @@ public class BrowserUtils {
 	 */
 	public static boolean isAt() {
 		return driver.getTitle()
-				.equals("â€¢ Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+				.equals("• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
 	}
 
 	/*
@@ -222,5 +222,27 @@ public class BrowserUtils {
 		
 		return num;
 	}
+	/* isContains method checking if the searchs first result is contains searched value*/
+	public static boolean isContains(String name) {
+	StatistaPage statistaPage = new StatistaPage();
+		System.out.println(statistaPage.matchFirst.getText());
+		return(statistaPage.matchFirst.getText().toLowerCase().contains(name.toLowerCase()));
+			
+		}
+	
+	/* firstThree method checking if the searchs first three results are containing searched value*/
+	public static boolean firstThree(List<WebElement> searchResults, String name) {
+		//StatistaPage statistaPage = new StatistaPage();
+	
+		List<WebElement> elems = searchResults;
 
+		for (int i = 0; i <3; i++) {
+			if (elems.get(i).getText().toLowerCase().contains(name.toLowerCase())) 	
+				return true;
+				break;
+		}
+	
+	return false;
+	}
 }
+

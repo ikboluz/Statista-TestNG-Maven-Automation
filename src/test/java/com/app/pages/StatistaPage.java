@@ -2,21 +2,54 @@ package com.app.pages;
 
 import java.util.List;
 
+
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 import com.app.utilities.Driver;
 
+
+
 public class StatistaPage {
-	
+
 	private WebDriver driver;
+
+	public StatistaPage() {
+		this.driver = Driver.getDriver();
+		PageFactory.initElements(driver, this);
+	}
+
+	@FindBy(xpath = "//input[@id='homepageSearch']")
+	public WebElement searchField;
+	@FindBy(xpath = "//input[@value='Statista Search']")
+	public WebElement searchClick;
+
+	 @FindBy(xpath="//div[@class='padding-all-20 padding-horizontal-s-0']")
+	 public List<WebElement> result;
+
+	@FindBy(xpath = "//input[@id='q']")
+	public WebElement searchButton2;
+
+	@FindBy(xpath = "(//div[@class='row'])[5]")
+	public WebElement resultMoreThanOne;
+
+	@FindBy(xpath = "//div[@class='margin-bottom-30']//h2")
+	public List<WebElement> searchResults;
 	
-	 public StatistaPage() {
-		 this.driver=Driver.getDriver();
-		 PageFactory.initElements(driver, this);
-	 }
+	@FindBy(xpath="(//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis'])[1]")
+	public WebElement matchFirst;
+	
+	@FindBy(xpath="(//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis'])[2]")
+	public WebElement matchSecond;
+	
+	@FindBy(xpath="(//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis'])[3]")
+	public WebElement matchThird;
+
+
 	
 	 @FindBy(id="homepageSearch")
 	 public WebElement homepageTextSearch;
@@ -55,4 +88,12 @@ public class StatistaPage {
 	 public WebElement refreshSearchButton;
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
 }
