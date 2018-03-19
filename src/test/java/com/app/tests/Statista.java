@@ -209,7 +209,7 @@ public class Statista extends TestBase{
 		BrowserUtils.searchStatistaButton(statistaPage.searchField, dataSearch);
 		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch);
 		assertTrue(BrowserUtils.firstThree(statistaPage.searchResults, dataSearch));
-	// 	assertTrue(BrowserUtils.isContains(dataSearch));	
+		assertTrue(BrowserUtils.isContains(dataSearch));	
 	}
 	
 	
