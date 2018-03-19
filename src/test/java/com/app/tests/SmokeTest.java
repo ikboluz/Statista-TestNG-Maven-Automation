@@ -22,7 +22,7 @@ StatistaPage statistaPage = new StatistaPage();
 		
 		assertTrue(BrowserUtils.isAt());
 		
-		BrowserUtils.searchStatista(statistaPage.homepageTextSearch, "Panera Bred");
+		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, "Panera Bread");
 		
 		assertEquals("Panera Bred",statistaPage.searchBoxText.getAttribute("value"));
 		assertTrue(statistaPage.searchBoxText.isDisplayed());
@@ -73,11 +73,6 @@ StatistaPage statistaPage = new StatistaPage();
 		System.out.println(BrowserUtils.verifingCheckBoxIsUnchecked(statistaPage.topicCheckBoxes, "Consumer Markets"));
 		assertTrue(BrowserUtils.verifingCheckBoxIsUnchecked(statistaPage.topicCheckBoxes, "Companies"));
 		System.out.println(BrowserUtils.verifingCheckBoxIsUnchecked(statistaPage.topicCheckBoxes, "Companies"));
-
-	
-		
-	
-
 
 					
 	}

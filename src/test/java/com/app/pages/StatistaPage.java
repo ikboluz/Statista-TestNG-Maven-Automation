@@ -22,7 +22,7 @@ public class StatistaPage {
 	 public WebElement homepageTextSearch;
 	 
 	 @FindBy(className="button button--primary colOne")
-	 public WebElement homepageSearchButton;
+	 public WebElement hompageSearchButton;
 	 
 	 @FindBy(id="q")
 	 public WebElement searchBoxText;
@@ -36,6 +36,23 @@ public class StatistaPage {
 	 @FindBy(xpath="//input[@class='entitiy__checkbox']")
 	 public List<WebElement> topicCheckBoxes;
 	 
+	 @FindBy(xpath="//div[@class='newAlert info']")
+	 public WebElement alertMessage;
+	 
+	 @FindBy(xpath="//i[@class='fa-search fa']")
+	 public WebElement searchButton;
+	 
+	 @FindBy(xpath="//div[@class='note note--info']")
+	 public WebElement suggestionMessage;
+	 
+	 @FindBy(xpath="//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis']")
+	 public WebElement firstResultText;
+	 
+	 @FindBy(xpath="(//h4)[1]//span[@class='text-normal']")
+	 public WebElement resultNum;
+	 
+	 @FindBy(id="refreshBtn")
+	 public WebElement refreshSearchButton;
 	
 
 }
