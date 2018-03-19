@@ -71,7 +71,7 @@ public class Statista extends TestBase{
 	
 	
 	
-//	@Test(priority=13)
+//	@Test (priority=13)
 	public void testST013() {
 		
 		String dataSearch="Panera Bread";

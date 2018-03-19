@@ -18,6 +18,7 @@ public class StatistaPage {
 		 PageFactory.initElements(driver, this);
 	 }
 	
+	 
 	 @FindBy(id="homepageSearch")
 	 public WebElement homepageTextSearch;
 	 

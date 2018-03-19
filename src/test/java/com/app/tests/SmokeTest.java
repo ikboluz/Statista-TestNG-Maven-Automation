@@ -28,7 +28,7 @@ StatistaPage statistaPage = new StatistaPage();
 		assertTrue(statistaPage.searchBoxText.isDisplayed());
 		
 		String name="Statistics";
-//		assertTrue(statistaPage.optionsStatic.isDisplayed());
+//		assertTrue(statistaPage.optionsStatic.isDisplayed()) ;
 		System.out.println(BrowserUtils.getTopicNameLists(statistaPage.topicNameLists, name));
 		assertTrue(BrowserUtils.getTopicNameLists(statistaPage.topicNameLists,name).equals(name));
 		

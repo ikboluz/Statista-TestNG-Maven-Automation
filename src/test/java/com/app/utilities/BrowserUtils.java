@@ -206,7 +206,7 @@ public class BrowserUtils {
 	 * This method is for
 	 * "checking and unchecking names individually under the topics"
 	 */
-	public static void checkAndUncheck(String name) {
+	public static void checkAndUncheck(String name){
 		driver.findElement(
 				By.xpath("//label[@class='entitiy__label']//span[contains(text(),'" + name + "')]/../../input"))
 				.click();
