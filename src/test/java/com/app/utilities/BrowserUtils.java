@@ -140,11 +140,11 @@ public class BrowserUtils {
 	 * left side of page.
 	 */
 	public static String getTopicNameLists(List<WebElement> elements, String name) {
-		String topicName = "";
+		String topicName ="";
 		List<WebElement> elems = elements;
 		for (WebElement webElement : elems) {
 			if (webElement.getText().contains(name)) {
-				topicName = webElement.getText().substring(0, webElement.getText().length() - 3).trim();
+				topicName = webElement.getText().substring(0, webElement.getText().indexOf("(")).trim();
 			}
 		}
 		return topicName;
@@ -206,7 +206,7 @@ public class BrowserUtils {
 	 * This method is for
 	 * "checking and unchecking names individually under the topics"
 	 */
-	public static void checkAndUncheck(String name) {
+	public static void checkAndUncheck(String name){
 		driver.findElement(
 				By.xpath("//label[@class='entitiy__label']//span[contains(text(),'" + name + "')]/../../input"))
 				.click();
