@@ -43,6 +43,8 @@ public class Statista extends TestBase{
 	@Test(priority=7)
 	public void testST07() {
 		
+		driver.get(ConfigurationReader.getProperty("url"));
+		
 		String alrtMessage="Unfortunately, no content could be found. Please check your spelling, try an alternative term or expand your search to the Statista archive.";
 		String narrowMessage="Didn’t find what you were looking for?";
 		
@@ -67,6 +69,8 @@ public class Statista extends TestBase{
 		
 	@Test(priority=13)
 	public void testST013() {
+		
+		driver.get(ConfigurationReader.getProperty("url"));
 		
 		String dataSearch="Panera Bread";
 		String firstResultName="Americans preferring Panera Bread in the U.S. in 2016 and 2017, by gender";
@@ -122,8 +126,10 @@ public class Statista extends TestBase{
 	
 	
 	
-	//@Test(priority=19)
+	@Test(priority=19)
 	public void testST019() {
+		
+		driver.get(ConfigurationReader.getProperty("url"));
 		
 		String dataSearch="cat and dog";
 		String firstResultName="Dog/cat food import volume in South Korea from U.S. 2000-2017";
@@ -202,6 +208,8 @@ public class Statista extends TestBase{
 	
 	@Test(priority=4)
 	public void testST004() {
+		
+		driver.get(ConfigurationReader.getProperty("url"));
 
 		String dataSearch="Dog";
 		assertTrue(BrowserUtils.isAt());

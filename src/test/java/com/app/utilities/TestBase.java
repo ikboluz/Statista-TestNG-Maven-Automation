@@ -12,7 +12,7 @@ public class TestBase {
 	
 protected WebDriver driver;
 	
-	@BeforeMethod(alwaysRun=true)
+	@BeforeClass(alwaysRun=true)
 	public void setUp() {
 		driver=Driver.getDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -20,9 +20,9 @@ protected WebDriver driver;
 		
 	}
 	
-	@AfterMethod(alwaysRun=true)
+	@AfterClass(alwaysRun=true)
 	public void tearDown() {
-	//	Driver.closeDriver();
+		Driver.closeDriver();
 		
 		
 	}
