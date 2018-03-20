@@ -122,7 +122,7 @@ public class BrowserUtils {
 	 */
 	public static boolean isAt() {
 		return driver.getTitle()
-				.equals("• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+				.equals("â€¢ Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
 	}
 
 	/*

@@ -54,7 +54,7 @@ StatistaPage statistaPage = new StatistaPage();
 				"Forecasts & surveys check box");
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Infographics"),
 				"Infographics check box");
-		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Topics"),
+		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "opics"),
 				"Topics check box");
 		
 		assertTrue(BrowserUtils.verifingCheckBoxIsUnchecked(statistaPage.topicCheckBoxes, "Dossiers"),

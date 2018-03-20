@@ -20,7 +20,7 @@ protected WebDriver driver;
 		
 	}
 	
-//	@AfterMethod(alwaysRun=true)
+	@AfterMethod(alwaysRun=true)
 	public void tearDown() {
 	//	Driver.closeDriver();
 		
