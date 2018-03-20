@@ -129,7 +129,15 @@ public class Statista extends TestBase {
 		searchPage.CheckBoxElement("Companies", searchPage.filtersNameLists).click();
 		BrowserUtils.waitFor(5);
 
+		String ResultNumberExpected = searchPage.SearchResultNumber.getText();
+		ResultNumberExpected = ResultNumberExpected.substring(1, ResultNumberExpected.length() - 1);
 
+		assertEquals(searchPage.resultNumberFilter("companies", searchPage.filtersNameLists),
+				Integer.parseInt(ResultNumberExpected));
+		assertEquals(searchPage.listRsultAfterFilter.size(), 1, "Only one company is available after the search");
+		assertTrue(searchPage.verifingCheckBoxIsUnchecked(searchPage.topicCheckBoxes, "Companie"));
+
+		searchPage.refreshSearch.click();
 
 	}
 
