@@ -13,6 +13,13 @@ import com.app.utilities.Driver;
 public class StatistaPage {
 
 	private WebDriver driver;
+	
+	public StatistaPage() {
+		this.driver = Driver.getDriver();
+		PageFactory.initElements(driver, this);
+	}
+	
+	
 	@FindBy(id = "homepageSearch")
 	public WebElement homepageTextSearch;
 
