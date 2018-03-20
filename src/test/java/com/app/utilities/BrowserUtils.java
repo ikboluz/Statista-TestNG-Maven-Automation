@@ -26,8 +26,6 @@ import com.app.pages.StatistaPage;
 import net.bytebuddy.asm.Advice.Enter;
 
 public class BrowserUtils {
-	
-	
 
 	private static WebDriver driver = Driver.getDriver();
 
@@ -104,8 +102,7 @@ public class BrowserUtils {
 	}
 
 	/*
-	 * this method is for 
-	 * "to find all links text".
+	 * this method is for "to find all links text".
 	 */
 	public static List<String> getElementsText(By locator) {
 
@@ -133,77 +130,71 @@ public class BrowserUtils {
 	 * "Enter your element and data to search "
 	 *
 	 */
-	public static void searchStatista(WebElement element, String search) {
+	public static void searchStatistaButton(WebElement element, String search) {
 		element.sendKeys(search);
 		element.sendKeys(Keys.ENTER);
 	}
 
 	/*
-	 * this method is for 
-	 * "to find the Names under the Topics" 
-	 * which is located on left side of page.
+	 * this method is for "to find the Names under the Topics" which is located on
+	 * left side of page.
 	 */
 	public static String getTopicNameLists(List<WebElement> elements, String name) {
-		String topicName="";
+		String topicName ="";
 		List<WebElement> elems = elements;
 		for (WebElement webElement : elems) {
 			if (webElement.getText().contains(name)) {
-				topicName=webElement.getText().substring(0, webElement.getText().length() - 3).trim();
+				topicName = webElement.getText().substring(0, webElement.getText().indexOf("(")).trim();
 			}
 		}
 		return topicName;
 	}
-	
+
 	/*
-	 * this method is for 
-	 * "Topic Lists" you choose topics name
-	 * and it's clicking on the check boxes.
+	 * this method is for "Topic Lists" you choose topics name and it's clicking on
+	 * the check boxes.
 	 */
-	public static void getTopicListsAndClick(List<WebElement> elements, String name){
+	public static void getTopicListsAndClick(List<WebElement> elements, String name) {
 		List<WebElement> elems = elements;
 		for (int i = 0; i < elems.size(); i++) {
-			if(elems.get(i).getText().equals(name)) {
+			if (elems.get(i).getText().equals(name)) {
 				elems.get(i).click();
 			}
 		}
 	}
-	
-	
+
 	/*
-	 * This method is for
-	 * "Verifying CheckBox is CHECKED".
+	 * This method is for "Verifying CheckBox is CHECKED".
 	 */
 	public static boolean verifingCheckBoxIsChecked(List<WebElement> elements, String name) {
-		//label[@class='entitiy__label']//span[contains(text(),'Topics')]/../../input
+		// label[@class='entitiy__label']//span[contains(text(),'Topics')]/../../input
 		List<WebElement> elems = elements;
 		StatistaPage statistaPage = new StatistaPage();
 		for (int i = 0; i < elems.size(); i++) {
-			if(statistaPage.topicNameLists.get(i).getText().contains(name)) {
-				if(elems.get(i).getAttribute("checked")==null) {
+			if (statistaPage.topicNameLists.get(i).getText().contains(name)) {
+				if (elems.get(i).isSelected() == false) {
 					return false;
-				}else {
+				} else {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-	
-	
+
 	/*
-	 * This method is for
-	 * "Verifying CheckBox is UNCHECKED".
+	 * This method is for "Verifying CheckBox is UNCHECKED".
 	 */
 	public static boolean verifingCheckBoxIsUnchecked(List<WebElement> elements, String name) {
-		
-		//label[@class='entitiy__label']//span[contains(text(),'Topics')]/../../input
+
+		// label[@class='entitiy__label']//span[contains(text(),'Topics')]/../../input
 		List<WebElement> elems = elements;
 		StatistaPage statistaPage = new StatistaPage();
 		for (int i = 0; i < elems.size(); i++) {
-			if(statistaPage.topicNameLists.get(i).getText().contains(name)) {
-				if(elems.get(i).getAttribute("checked")==null) {
+			if (statistaPage.topicNameLists.get(i).getText().contains(name)) {
+				if (elems.get(i).isSelected() == false) {
 					return true;
-				}else {
+				} else {
 					return false;
 				}
 			}
@@ -211,4 +202,47 @@ public class BrowserUtils {
 		return false;
 	}
 
+	/*
+	 * This method is for
+	 * "checking and unchecking names individually under the topics"
+	 */
+	public static void checkAndUncheck(String name){
+		driver.findElement(
+				By.xpath("//label[@class='entitiy__label']//span[contains(text(),'" + name + "')]/../../input"))
+				.click();
+	}
+	
+	/*
+	 * This method is for
+	 * "geting the each names individually under the topics"
+	 * and returning result.
+	 */
+	public static int getTopicNamesResultNum(String name) {
+		int num=Integer.parseInt(driver.findElement(By.xpath("//label[@class='entitiy__label']//span[contains(text(),'" + name + "')]/..//span[@class='font-italic']/span")).getText());
+		
+		return num;
+	}
+	/* isContains method checking if the searchs first result is contains searched value*/
+	public static boolean isContains(String name) {
+	StatistaPage statistaPage = new StatistaPage();
+		System.out.println(statistaPage.matchFirst.getText());
+		return(statistaPage.matchFirst.getText().toLowerCase().contains(name.toLowerCase()));
+			
+		}
+	
+	/* firstThree method checking if the searchs first three results are containing searched value*/
+	public static boolean firstThree(List<WebElement> searchResults, String name) {
+		//StatistaPage statistaPage = new StatistaPage();
+	
+		List<WebElement> elems = searchResults;
+
+		for (int i = 0; i <3; i++) {
+			if (elems.get(i).getText().toLowerCase().contains(name.toLowerCase())) 	
+				return true;
+				break;
+		}
+	
+	return false;
+	}
 }
+
