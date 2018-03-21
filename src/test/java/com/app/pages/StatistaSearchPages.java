@@ -35,9 +35,7 @@ public class StatistaSearchPages {
 	public List<WebElement> filtersNameLists;
 
 	public static boolean DynamicDropMenuResults(List<WebElement> element, String search) {
-
 		for (WebElement elmt : element) {
-
 			if (elmt.getText().toLowerCase().contains(search.toLowerCase())) {
 				return true;
 			}
@@ -45,37 +43,26 @@ public class StatistaSearchPages {
 		return false;
 	}
 
-	// Method return the element radio button desired under Search Accuracy by
-	// entering its exact String value
 	public WebElement RadioButton(String str) {
 		return driver
 				.findElement(By.xpath("//div[@class='form_row__radio width33']//label[.='" + str + "']/..//input"));
-
 	}
 
 	public boolean isClickable() {
 		if (driver.getTitle().contains("Search | Statista")) {
 			return true;
 		}
-
 		return false;
 	}
 
 	public WebElement FilerElement(List<WebElement> list, String filter) {
-		WebElement Filter = null;
-		int index = 0;
+		WebElement Filter = null;	
 		for (WebElement webElement : list) {
-
 			if (webElement.getText().toLowerCase().contains(filter.toLowerCase())) {
-
 				Filter = webElement;
-
 			}
-			index++;
-
 		}
 		return Filter;
-
 	}
 
 	@FindBy(xpath = "//span[@class='font-italic']/span")
@@ -83,19 +70,13 @@ public class StatistaSearchPages {
 
 	public int resultNumberFilter(String str, List<WebElement> list) {
 		int index = 0;
-
 		for (WebElement webElement : list) {
-
 			if (webElement.getText().toLowerCase().contains(str.toLowerCase())) {
-
 				break;
 			}
 			index++;
-
 		}
-
 		return Integer.parseInt(resultlistfilter.get(index).getText());
-
 	}
 
 	@FindBy(xpath = "//td/a")
@@ -108,12 +89,9 @@ public class StatistaSearchPages {
 
 		for (int i = 0; i < elements.size(); i++) {
 			if (!filtersNameLists.get(i).getText().contains(name)) {
-
 				if (elements.get(i).getAttribute("checked") == null) {
-
 					return true;
 				} else {
-
 					continue;
 				}
 			}
@@ -123,19 +101,13 @@ public class StatistaSearchPages {
 
 	public WebElement CheckBoxElement(String str, List<WebElement> list) {
 		int index = 0;
-
 		for (WebElement webElement : list) {
-
 			if (webElement.getText().toLowerCase().contains(str.toLowerCase())) {
-
 				break;
 			}
 			index++;
-
 		}
-
 		return topicCheckBoxes.get(index);
-
 	}
 
 }
