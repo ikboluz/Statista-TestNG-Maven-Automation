@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 import org.testng.annotations.Test;
 
 import com.app.pages.StatistaPage;
-import com.app.pages.StatistaSearchPage;
+import com.app.pages.StatistaSearchPages;
 import com.app.utilities.BrowserUtils;
 import com.app.utilities.ConfigurationReader;
 import com.app.utilities.TestBase;
@@ -23,7 +23,7 @@ import net.bytebuddy.dynamic.loading.PackageDefinitionStrategy.ManifestReading.S
 
 public class Statista extends TestBase{
 	
-	StatistaSearchPage searchPage = new StatistaSearchPage();
+	StatistaSearchPages searchPage = new StatistaSearchPages();
 	StatistaPage statistaPage = new StatistaPage();
 	
 	
@@ -259,7 +259,7 @@ public class Statista extends TestBase{
 		assertTrue(BrowserUtils.isAt(), "Statista main page is not displayed");
 
 		statistaPage.homepageTextSearch.sendKeys("Panera Bread");
-		assertTrue(StatistaSearchPage.DynamicDropMenuResults(statistaPage.DynamicDropSearch, "Panera Bread"));
+		assertTrue(StatistaSearchPages.DynamicDropMenuResults(statistaPage.DynamicDropSearch, "Panera Bread"));
 
 		statistaPage.StatistaSearchSubmit.click();
 		assertTrue(driver.getTitle().contains("Search | Statista"), "Statista Search page is not displayed");
@@ -322,7 +322,7 @@ public class Statista extends TestBase{
 		assertEquals(driver.getTitle(),
 				"• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
 		statistaPage.homepageTextSearch.sendKeys("Panera Bread");
-		assertTrue(StatistaSearchPage.DynamicDropMenuResults(statistaPage.DynamicDropSearch, "Panera Bread"),
+		assertTrue(StatistaSearchPages.DynamicDropMenuResults(statistaPage.DynamicDropSearch, "Panera Bread"),
 				"Text type in search box should visible in searchbox");
 		statistaPage.StatistaSearchSubmit.click();
 		String ResultNumber = searchPage.SearchResultNumber.getText();
