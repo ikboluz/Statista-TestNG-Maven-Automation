@@ -50,4 +50,55 @@ public class StatistaPage {
 	
 	@FindBy(id="refreshBtn")
 	public WebElement refreshButton;
+	
+
+	@FindBy(xpath = "//i[@class='fa-search fa']")
+	public WebElement searchButton;
+
+	@FindBy(xpath = "//div[@class='note note--info']")
+	public WebElement suggestionMessage;
+
+	@FindBy(xpath = "//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis']")
+	public WebElement firstResultText;
+
+	@FindBy(xpath = "(//h4)[1]//span[@class='text-normal']")
+	public WebElement resultNum;
+
+	@FindBy(id = "refreshBtn")
+	public WebElement refreshSearchButton;
+
+	@FindBy(xpath = "//input[@id='homepageSearch']")
+	public WebElement searchField;
+
+	@FindBy(xpath = "//div[@class='margin-bottom-30']//h2")
+	public List<WebElement> searchResults;
+
+	@FindBy(xpath = "(//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis'])[1]")
+	public WebElement matchFirst;
+
+	@FindBy(xpath = "(//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis'])[2]")
+	public WebElement matchSecond;
+
+	@FindBy(xpath = "(//h2[@class='h5 text-color--darkerblue margin-bottom-0 text-ellipsis'])[3]")
+	public WebElement matchThird;
+
+	@FindBy(xpath = "//input[@value='Statista Search']")
+	public WebElement StatistaSearchSubmit;
+
+	@FindBy(className = "ui-menu-item-wrapper")
+	public List<WebElement> DynamicDropSearch;
+
+	
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
 }
