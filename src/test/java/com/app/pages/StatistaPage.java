@@ -17,6 +17,8 @@ public class StatistaPage {
 		this.driver = Driver.getDriver();
 		PageFactory.initElements(driver, this);
 	}
+	
+	
 
 	@FindBy(id = "homepageSearch")
 	public WebElement homepageTextSearch;
@@ -87,16 +89,25 @@ public class StatistaPage {
 	@FindBy(className = "ui-menu-item-wrapper")
 	public List<WebElement> DynamicDropSearch;
 
-	@FindBy(id = "iscountrySearch")
-	public WebElement country;
+	@FindBy(xpath = "//span[@class='autocompleteHighlightItem']")
+	public WebElement SearchBoxTextEntered;
+
+	@FindBy(id = "js-reset-all-filters")
+	public WebElement resetButton;
+
+	@FindBy(xpath = "//*[@id='js-regular-filter']/div[2]/div[2]/div/div[2]/div")
+	public WebElement USbox;
 
 	@FindBy(id = "isocountry_840")
 	public WebElement UnitedStatesCheckBox;
-	
-	@FindBy(xpath="//*[@id='js-regular-filter']/div[2]/div[2]/div/div[2]/div")
-	public WebElement USbox;
-	
-	@FindBy(id ="js-reset-all-filters")
-	public WebElement resetButton;
+
+	@FindBy(xpath = "//h4[@class='hl-module hideMobile']")
+	public WebElement Searchresults;
+
+	@FindBy(xpath = "//option[@value='2017']")
+	public WebElement selectYear2017;
+
+	@FindBy(id = "interval")
+	public WebElement seletcPublicationDate;
 
 }
