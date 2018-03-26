@@ -573,7 +573,6 @@ public class Statista extends TestBase {
 
 		String alrtMessage = "Unfortunately, no content could be found. Please check your spelling, try an alternative term or expand your search to the Statista archive.";
 		String narrowMessage = "Didn�t find what you were looking for?";
-
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, "don’t");
 
 		assertEquals("SEARCH RESULTS (0)", statistaPage.Searchresults.getText(), "Search Results FAILED");
