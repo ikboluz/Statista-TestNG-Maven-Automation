@@ -58,7 +58,7 @@ public class Statista extends TestBase {
 		driver.get(ConfigurationReader.getProperty("url"));
 
 		String alrtMessage = "Unfortunately, no content could be found. Please check your spelling, try an alternative term or expand your search to the Statista archive.";
-		String narrowMessage = "Didn’t find what you were looking for?";
+		String narrowMessage = "Didnï¿½t find what you were looking for?";
 
 		// 1
 		assertTrue(driver.findElement(By.id("statistaLogo")).isDisplayed(), "Verifying \"statistaLogo\" isDisplayed 1");
@@ -333,7 +333,7 @@ public class Statista extends TestBase {
 		driver.get(ConfigurationReader.getProperty("url"));
 		assertEquals(driver.getCurrentUrl().substring(0, 24), "https://www.statista.com");
 		assertEquals(driver.getTitle(),
-				"• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+				"ï¿½ Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
 		statistaPage.homepageTextSearch.sendKeys("Panera Bread");
 		assertTrue(StatistaSearchPages.DynamicDropMenuResults(statistaPage.DynamicDropSearch, "Panera Bread"),
 				"Text type in search box should visible in searchbox");
@@ -379,7 +379,7 @@ public class Statista extends TestBase {
 
 		assertEquals(driver.getCurrentUrl(), ExpectedUrl);
 		assertEquals(driver.getTitle(),
-				"• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+				"ï¿½ Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
 		String searchText = "Panera Bread";
 		statistaPage.homepageTextSearch.sendKeys(searchText);
 
@@ -387,7 +387,7 @@ public class Statista extends TestBase {
 		assertEquals(searchText, textExpected);
 		statistaPage.StatistaSearchSubmit.click();
 
-		assertEquals(driver.getTitle(), "• Search | Statista");
+		assertEquals(driver.getTitle(), "ï¿½ Search | Statista");
 
 		assertEquals(searchPage.ResultsListAfterSearch.get(0).getText(),
 				"Americans preferring Panera Bread in the U.S. in 2016 and 2017, by gender");
@@ -563,7 +563,6 @@ public class Statista extends TestBase {
 			// Result THEREFORE TEST FAILED!!!!!");
 
 			// assertEquals(searchResult, updatedResult);
-
 		}
 
 	}
@@ -573,7 +572,7 @@ public class Statista extends TestBase {
 		driver.get(ConfigurationReader.getProperty("url"));
 
 		String alrtMessage = "Unfortunately, no content could be found. Please check your spelling, try an alternative term or expand your search to the Statista archive.";
-		String narrowMessage = "Didn’t find what you were looking for?";
+		String narrowMessage = "Didnï¿½t find what you were looking for?";
 
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, "donâ€™t");
 
@@ -598,7 +597,7 @@ public class Statista extends TestBase {
 		assertTrue(BrowserUtils.isAt(), "Verifying HomePage Title");
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, dataSearch);
 		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch, "Checking search box text");
-		assertTrue(driver.getTitle().equals("• Search | Statista"), "Verifying Result Title");
+		assertTrue(driver.getTitle().equals("ï¿½ Search | Statista"), "Verifying Result Title");
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Statistics"),
 				"Statista check box");
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Forecasts & surveys"),
@@ -642,7 +641,7 @@ public class Statista extends TestBase {
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, dataSearch);
 		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch, "Checking search box text");
 
-		assertTrue(driver.getTitle().equals("• Search | Statista"), "Verifying Result Title");
+		assertTrue(driver.getTitle().equals("ï¿½ Search | Statista"), "Verifying Result Title");
 
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Statistics"),
 				"Statista check box");

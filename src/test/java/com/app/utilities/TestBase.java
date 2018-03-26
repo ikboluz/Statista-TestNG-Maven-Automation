@@ -12,8 +12,6 @@ public class TestBase {
 
 	protected WebDriver driver;
 	
-	
-
 	@BeforeClass(alwaysRun = true)
 	public void setUp() {
 		driver = Driver.getDriver();

@@ -19,9 +19,6 @@ public class StatistaSearchPages {
 		PageFactory.initElements(driver, this);
 	}
 	
-	
-	
-
 	@FindBy(id = "q")
 	public WebElement searchBoxText;
 

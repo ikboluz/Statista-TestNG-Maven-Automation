@@ -39,8 +39,6 @@ public class BrowserUtils {
 		return pro.substring(0, 3);
 	}
 	
-	
-
 	public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
 		WebDriverWait wait = new WebDriverWait(driver, timeToWaitInSec);
 		return wait.until(ExpectedConditions.visibilityOf(element));

@@ -8,7 +8,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
 import com.app.pages.StatistaPage;
 import com.app.utilities.BrowserUtils;
 import com.app.utilities.TestBase;
