@@ -1,12 +1,10 @@
 package com.app.pages;
 
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.app.utilities.Driver;
 
 public class StatistaPage {
@@ -23,7 +21,7 @@ public class StatistaPage {
 	@FindBy(id = "homepageSearch")
 	public WebElement homepageTextSearch;
 
-	@FindBy(className = "button button--primary colOne")
+	@FindBy(xpath = "//input[@class='button button--primary colOne']")
 	public WebElement homepageSearchButton;
 
 	@FindBy(id = "q")

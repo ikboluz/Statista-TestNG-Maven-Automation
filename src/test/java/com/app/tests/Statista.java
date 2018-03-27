@@ -4,36 +4,21 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotSame;
 import static org.testng.Assert.assertTrue;
-
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
-import org.testng.annotations.Test;
-
 import com.app.pages.StatistaPage;
 import com.app.pages.StatistaSearchPages;
 import com.app.utilities.BrowserUtils;
 import com.app.utilities.ConfigurationReader;
 import com.app.utilities.TestBase;
 
-import net.bytebuddy.dynamic.loading.PackageDefinitionStrategy.ManifestReading.SealBaseLocator;
-
 public class Statista extends TestBase {
 
-	
 	StatistaSearchPages searchPage = new StatistaSearchPages();
 	StatistaPage statistaPage = new StatistaPage();
 
 	
-	
-	// 1,7,13,19
 	@Test(priority = 1)
 	public void testST001() {
 
@@ -41,13 +26,13 @@ public class Statista extends TestBase {
 		String url = "https://www.statista.com/";
 		String dataSearch = "Panera Bread";
 
-		// 1
+		
 		assertTrue(driver.getTitle().contains(title), "Verifying Title");
-		// 2
+		
 		assertEquals(driver.getCurrentUrl(), url, "Verifying URL");
-		// 3
+		
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, dataSearch);
-		// 4
+		
 		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch, "Checking search box text");
 		BrowserUtils.waitForPageToLoad(3);
 	}
@@ -60,20 +45,20 @@ public class Statista extends TestBase {
 		String alrtMessage = "Unfortunately, no content could be found. Please check your spelling, try an alternative term or expand your search to the Statista archive.";
 		String narrowMessage = "Didn’t find what you were looking for?";
 
-		// 1
+		
 		assertTrue(driver.findElement(By.id("statistaLogo")).isDisplayed(), "Verifying \"statistaLogo\" isDisplayed 1");
-		// 2
+		
 		statistaPage.homepageTextSearch.sendKeys("Hello");
 		BrowserUtils.waitFor(5);
 		statistaPage.homepageTextSearch.clear();
-		// 3
+		
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, "%%, **, !!");
-		// 4
+		
 		assertTrue(driver.findElement(By.id("statistaLogo")).isDisplayed(), "Verifying \"statistaLogo\" isDisplayed 2");
-		// 5
+		
 		assertTrue(statistaPage.alertMessage.isDisplayed(), "Verifying alert message isDisplayed");
 		assertTrue(statistaPage.alertMessage.getText().contains(alrtMessage), "Verifying alert message text");
-		// 6
+		
 		statistaPage.searchButton.click();
 		BrowserUtils.waitFor(5);
 		assertTrue(statistaPage.suggestionMessage.isDisplayed(), "Verifying narrow message isDisplayed");
@@ -87,12 +72,12 @@ public class Statista extends TestBase {
 
 		String dataSearch = "Panera Bread";
 		String firstResultName = "Americans preferring Panera Bread in the U.S. in 2016 and 2017, by gender";
-		// 1
+		
 		assertTrue(BrowserUtils.isAt(), "Verifying HomePage Title");
-		// 2
+		
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, dataSearch);
 		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch, "Checking search box text");
-		// 3
+		
 		assertTrue(driver.getTitle().contains("Search | Statista"), "Verifying Result Title");
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Statistics"),
 				"Statista check box");
@@ -116,10 +101,10 @@ public class Statista extends TestBase {
 		assertTrue(BrowserUtils.verifingCheckBoxIsUnchecked(statistaPage.topicCheckBoxes, "Companies"),
 				"Companies uncheck box");
 		assertTrue(statistaPage.firstResultText.getText().equals(firstResultName), "Compairing First Results text");
-		// 4
+		
 		int resultNum1 = Integer
 				.parseInt(statistaPage.resultNum.getText().substring(1, statistaPage.resultNum.getText().length() - 1));
-		// 5
+		
 		BrowserUtils.checkAndUncheck("Dossiers");
 		BrowserUtils.checkAndUncheck("Statista studies");
 		BrowserUtils.checkAndUncheck("Industry & country reports");
@@ -146,13 +131,13 @@ public class Statista extends TestBase {
 
 		String dataSearch = "cat and dog";
 		String firstResultName = "Dog/cat food import volume in South Korea from U.S. 2000-2017";
-		// 1
+		
 		assertTrue(BrowserUtils.isAt(), "Verifying Title");
 		assertTrue(driver.getCurrentUrl().equals("https://www.statista.com/"), "Verifyung URL");
-		// 2
+		
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, dataSearch);
 		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch, "Checking search box text ");
-		// 3
+		
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Statistics"),
 				"Statista check box");
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Forecasts & surveys"),
@@ -176,10 +161,10 @@ public class Statista extends TestBase {
 				"Companies uncheck box");
 		// assertTrue(statistaPage.firstResultText.getText().equals(firstResultName),
 		// "Compairing First Results text 1");
-		// 4
+		
 		int resultNum1 = Integer
 				.parseInt(statistaPage.resultNum.getText().substring(1, statistaPage.resultNum.getText().length() - 1));
-		// 5
+		
 		BrowserUtils.getTopicListsAndClick(statistaPage.topicLists, "Statistics");
 		BrowserUtils.waitFor(3);
 		assertTrue(BrowserUtils.verifingCheckBoxIsChecked(statistaPage.topicCheckBoxes, "Statistics"),
@@ -213,7 +198,7 @@ public class Statista extends TestBase {
 				resultNum2, "Verifying TopicNamesResultNum 2 ==");
 		// assertTrue(statistaPage.firstResultText.getText().equals(firstResultName),
 		// "Comparing First result text 2");
-		// 6
+		
 		assertTrue(resultNum1 > resultNum2, "Compairing results num < >");
 	}
 
@@ -290,8 +275,6 @@ public class Statista extends TestBase {
 		String ResultNumberStep8 = searchPage.SearchResultNumber.getText();
 		ResultNumberStep8 = ResultNumberStep8.substring(3, ResultNumberStep8.length() - 1);
 		ResultNumberStep8 = ResultNumberStep8.replace(",", "");
-		System.out.println(ResultNumberStep4);
-		System.out.println(ResultNumberStep8);
 
 		assertTrue(Integer.parseInt(ResultNumberStep8) > Integer.parseInt(ResultNumberStep4),
 				"Result Number in step6 should be Higher than Result Number in step4");
@@ -636,9 +619,9 @@ public class Statista extends TestBase {
 
 		String dataSearch = "Panera Bread";
 		String firstResultName = "Americans preferring Panera Bread in the U.S. in 2016 and 2017, by gender";
-		// 1
+		
 		assertTrue(BrowserUtils.isAt(), "Verifying HomePage Title");
-		// 2
+		
 		BrowserUtils.searchStatistaButton(statistaPage.homepageTextSearch, dataSearch);
 		assertEquals(statistaPage.searchBoxText.getAttribute("value"), dataSearch, "Checking search box text");
 
@@ -734,6 +717,130 @@ public class Statista extends TestBase {
 		BrowserUtils.waitFor(3);
 		assertTrue(BrowserUtils.getListOfMatchedResultList(statistaPage.searchResults, dataSearch1, 5));
 
+	}
+
+	@Test(priority = 5)
+	public void testST05() {
+		driver.get(ConfigurationReader.getProperty("url"));
+		String url = driver.getCurrentUrl();
+		String title = driver.getTitle();
+
+		assertEquals(url, "https://www.statista.com/");
+		assertEquals(title, "• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+
+		statistaPage.homepageSearchButton.click();
+		BrowserUtils.waitFor(3);
+		assertEquals(driver.getCurrentUrl(), "https://www.statista.com/search/?q=");
+		assertEquals(driver.getTitle(), "• Search | Statista");
+
+		assertTrue(searchPage.resultsDisplayed());
+
+	}
+
+	@Test(priority = 11)
+	public void testST011() {
+		driver.get(ConfigurationReader.getProperty("url"));
+		String url = driver.getCurrentUrl();
+		String title = driver.getTitle();
+
+		assertEquals(url, "https://www.statista.com/");
+		assertEquals(title, "• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+
+		statistaPage.homepageTextSearch.sendKeys("Panera Bread");
+		statistaPage.homepageSearchButton.click();
+
+		assertEquals(driver.getCurrentUrl(), "https://www.statista.com/search/?q=Panera+Bread");
+		assertEquals(driver.getTitle(), "• Search | Statista");
+
+		assertTrue(!searchPage.verifingCheckBoxIsUnchecked(searchPage.topicCheckBoxes, "Companies"));
+
+		String result1 = searchPage.SearchResultNumber.getText();
+
+		assertEquals(result1, "(60)");
+
+		searchPage.dossiersCheckBox.click();
+		searchPage.refreshSearch.click();
+
+		BrowserUtils.waitFor(3);
+
+		String result2 = searchPage.SearchResultNumber.getText();
+
+		assertEquals(result2, "(58)");
+
+		assertTrue(searchPage.verifingCheckBoxIsUnchecked(searchPage.topicCheckBoxes, "Dossiers"));
+
+		int i1 = searchPage.stringToINT(result1);
+		int i2 = searchPage.stringToINT(result2);
+
+		assertTrue(i1 > i2);
+
+	}
+
+	@Test(priority = 17)
+	public void testST017() {
+
+		driver.get(ConfigurationReader.getProperty("url"));
+		String url = driver.getCurrentUrl();
+		String title = driver.getTitle();
+
+		assertEquals(url, "https://www.statista.com/");
+		assertEquals(title, "• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+
+		statistaPage.homepageTextSearch.sendKeys("Panera Bread");
+		statistaPage.homepageSearchButton.click();
+
+		assertEquals(driver.getCurrentUrl(), "https://www.statista.com/search/?q=Panera+Bread");
+		assertEquals(driver.getTitle(), "• Search | Statista");
+
+		String result1 = searchPage.SearchResultNumber.getText();
+
+		searchPage.selectRegion("North America");
+
+		searchPage.canadaCheckBox.click();
+
+		searchPage.refreshSearch.click();
+
+		BrowserUtils.waitFor(1);
+
+		assertTrue(searchPage.canadaCheckBox.isDisplayed());
+
+		String result2 = searchPage.resultNumberAfterFilters.getText();
+
+		int i1 = searchPage.stringToINT(result1);
+		int i2 = searchPage.stringToINT(result2);
+
+		assertTrue(i1 > i2);
+
+		assertTrue(searchPage.resultsContains("Canada"));
+	}
+
+	@Test(priority = 21)
+	public void testST021() {
+		driver.get(ConfigurationReader.getProperty("url"));
+		String url = driver.getCurrentUrl();
+		String title = driver.getTitle();
+
+		assertEquals(url, "https://www.statista.com/");
+		assertEquals(title, "• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
+
+		statistaPage.homepageSearchButton.click();
+
+		assertEquals(driver.getCurrentUrl(), "https://www.statista.com/search/?q=");
+		assertEquals(driver.getTitle(), "• Search | Statista");
+
+		assertTrue(searchPage.verifingCheckBoxIsUnchecked(searchPage.topicCheckBoxes, "Digital Markets"));
+		assertTrue(searchPage.verifingCheckBoxIsUnchecked(searchPage.topicCheckBoxes, "Consumer Markets"));
+
+		String result1 = searchPage.SearchResultNumber.getText();
+
+		searchPage.refreshSearch.click();
+
+		String result2 = searchPage.SearchResultNumber.getText();
+
+		int i1 = searchPage.stringToINT(result1);
+		int i2 = searchPage.stringToINT(result2);
+
+		assertTrue(i1 == i2);
 	}
 
 }

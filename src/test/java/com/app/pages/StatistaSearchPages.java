@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.Select;
 import com.app.utilities.Driver;
 
 public class StatistaSearchPages {
@@ -18,9 +18,6 @@ public class StatistaSearchPages {
 		this.driver = Driver.getDriver();
 		PageFactory.initElements(driver, this);
 	}
-	
-	
-	
 
 	@FindBy(id = "q")
 	public WebElement searchBoxText;
@@ -54,6 +51,18 @@ public class StatistaSearchPages {
 
 	@FindBy(xpath = "//span[@data-searchrefresh='Refresh Search']")
 	public WebElement RefreshSearch;
+
+	@FindBy(xpath = "//input[@id='dossiers']")
+	public WebElement dossiersCheckBox;
+
+	@FindBy(id = "isoregion")
+	public WebElement regionDropDownList;
+
+	@FindBy(id = "isocountry_124")
+	public WebElement canadaCheckBox;
+
+	@FindBy(xpath = "//span[@class='text-normal']")
+	public WebElement resultNumberAfterFilters;
 
 	public static boolean DynamicDropMenuResults(List<WebElement> element, String search) {
 		for (WebElement elmt : element) {
@@ -134,4 +143,42 @@ public class StatistaSearchPages {
 
 	}
 
+	public boolean resultsDisplayed() {
+
+		return (!ResultsListAfterSearch.isEmpty());
+	}
+
+	public int stringToINT(String s) {
+		String i = "";
+		for (String S : s.split("")) {
+			if (S.equals("1") || S.equals("2") || S.equals("3") || S.equals("4") || S.equals("5") || S.equals("6")
+					|| S.equals("7") || S.equals("8") || S.equals("9") || S.equals("0")) {
+				i += S;
+			}
+		}
+		return Integer.parseInt(i);
+	}
+
+	public void selectRegion(String s) {
+		Select select = new Select(regionDropDownList);
+		List<WebElement> options = select.getAllSelectedOptions();
+		for (int i = 0; i < options.size(); i++) {
+			if (options.get(i).getText().equals(s)) {
+				select.selectByIndex(i);
+			}
+		}
+	}
+
+	public boolean resultsContains(String s) {
+		boolean b = false;
+		for (WebElement we : ResultsListAfterSearch) {
+			if (we.getText().contains(s)) {
+				b = true;
+			} else {
+				b = false;
+			}
+		}
+
+		return b;
+	}
 }
