@@ -30,6 +30,8 @@ public class BrowserUtils {
 	private static WebDriver driver = Driver.getDriver();
 	
 	
+	
+	
 
 	public static String verifyPRO(String name) {
 		String pro = driver

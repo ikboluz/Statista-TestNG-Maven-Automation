@@ -18,6 +18,7 @@ public class StatistaPage {
 	
 	
 
+	
 	@FindBy(id = "homepageSearch")
 	public WebElement homepageTextSearch;
 

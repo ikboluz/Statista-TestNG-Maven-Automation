@@ -13,11 +13,14 @@ import com.app.utilities.Driver;
 public class StatistaSearchPages {
 
 	private WebDriver driver;
+	
 
 	public StatistaSearchPages() {
 		this.driver = Driver.getDriver();
 		PageFactory.initElements(driver, this);
 	}
+	
+	
 
 	@FindBy(id = "q")
 	public WebElement searchBoxText;
@@ -181,4 +184,7 @@ public class StatistaSearchPages {
 
 		return b;
 	}
+	
+	
+	
 }

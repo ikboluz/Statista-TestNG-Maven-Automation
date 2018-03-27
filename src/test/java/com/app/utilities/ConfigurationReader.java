@@ -7,8 +7,6 @@ public class ConfigurationReader {
 	
 	private static Properties configFile;
 	
-	
-
 	static {
 
 		try {

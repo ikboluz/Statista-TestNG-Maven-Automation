@@ -19,6 +19,8 @@ public class Statista extends TestBase {
 	StatistaPage statistaPage = new StatistaPage();
 
 	
+	
+	
 	@Test(priority = 1)
 	public void testST001() {
 
@@ -318,6 +320,7 @@ public class Statista extends TestBase {
 		assertEquals(driver.getTitle(),
 				"• Statista - The Statistics Portal for Market Data, Market Research and Market Studies");
 		statistaPage.homepageTextSearch.sendKeys("Panera Bread");
+		BrowserUtils.waitFor(5);
 		assertTrue(StatistaSearchPages.DynamicDropMenuResults(statistaPage.DynamicDropSearch, "Panera Bread"),
 				"Text type in search box should visible in searchbox");
 		statistaPage.StatistaSearchSubmit.click();
@@ -476,7 +479,7 @@ public class Statista extends TestBase {
 
 		// wait
 
-		BrowserUtils.waitFor(1);
+		BrowserUtils.waitFor(3);
 
 		// Verify US button appears after checking US
 
